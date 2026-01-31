@@ -1,7 +1,7 @@
 <div align="center">
 
 # 🚀 Fin-Aero: Projectile Dynamics & Wake Stabilization
-### High-Fidelity Analysis of Aerodynamic Drag and Vortex Shedding Effects on Spherical Projectiles
+### Analysis of Aerodynamic Drag and Vortex Shedding Effects on Spherical Projectiles
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18443083.svg)](https://doi.org/10.5281/zenodo.18443083)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/shubh-chawda/fin-ratio-projectile-aero/ci.yml?branch=main&label=reproducibility)](https://github.com/shubh-chawda/fin-ratio-projectile-aero/actions)
@@ -19,7 +19,7 @@
 
 **Fin-Aero** is a **reproducible research artefact** that quantifies the aerodynamic trade-offs of fin geometry on spherical projectiles. Unlike standard kinematic studies that assume a vacuum, this project implements a **Quadratic Drag Physics Engine** to model the non-linear decay of velocity under real-world air resistance.
 
-The study identifies a statistically significant anomaly at **$0.75\times$ Fin-Length-to-Diameter ($L/D$)**, where the range reduction is minimized. We hypothesize this is due to **Wake Stabilization** and **Vortex Shedding Resonance** (governed by the Strouhal Number), which momentarily delays boundary layer separation.
+The study identifies an anomaly at **$0.75\times$ Fin-Length-to-Diameter ($L/D$)**, where the range reduction is minimized. We **hypothesize** this is due to **Wake Stabilization** and **Vortex Shedding Resonance** (governed by the Strouhal Number), which momentarily delays boundary layer separation.
 
 ---
 
@@ -59,20 +59,20 @@ Extended Essays often end as PDFs and DOCXs. I wanted the opposite:
 This project sits at the intersection of **projectile motion** and **aerodynamic drag**, with fin geometry acting as a controlled design variable.
 
 ### Core physics concepts used
-- **Newton’s 2nd law**: \(\vec{F}_\text{net}=m\vec{a}\)
-- **Decomposition into components**: \(x\)-motion and \(y\)-motion coupled via speed \(v=\sqrt{v_x^2+v_y^2}\)
-- **Gravity**: constant downward acceleration \(g\)
+- **Newton’s 2nd law**: $$\(\vec{F}_\text{net}=m\vec{a}\)$$
+- **Decomposition into components**: $$\(x\)-motion and \(y\)-motion coupled via speed \(v=\sqrt{v_x^2+v_y^2}\)$$
+- **Gravity**: constant downward acceleration $$\(g\)$$
 - **Quadratic drag** (dominant at moderate speeds):  
-  \[
+  $$\[
   \vec{F}_d = -k_\mathrm{eff}\, v\, \vec{v}
-  \]
+  \]$$
   where \(k_\mathrm{eff}\) is an **effective** parameter absorbing geometry + air density + drag coefficient + reference area.
-- **Launch angle control**: \(\theta \approx 45^\circ\) (range-optimising baseline without drag; still a strong comparative angle under drag)
-- **Parameter inference**: fit \(k_\mathrm{eff}\) such that simulation matches observed range
-- **Uncertainty propagation**: bootstrap trials → distribution of fitted \(k_\mathrm{eff}\)
+- **Launch angle control**: $$\(\theta \approx 45^\circ\)$$ (range-optimising baseline without drag; still a strong comparative angle under drag)
+- **Parameter inference**: fit $$\(k_\mathrm{eff}\)$$ such that simulation matches observed range
+- **Uncertainty propagation**: bootstrap trials → distribution of fitted $$\(k_\mathrm{eff}\)$$
 
 ### What “effective” means here
-Instead of separately estimating \(C_d\), cross-sectional area, and flow regime details, the model uses \(k_\mathrm{eff}\) as a compact way to represent **overall aerodynamic resistance** for each fin ratio.
+Instead of separately estimating $$\(C_d\)$$, cross-sectional area, and flow regime details, the model uses $$\(k_\mathrm{eff}\)$$ as a compact way to represent **overall aerodynamic resistance** for each fin ratio.
 
 > ✅ This is common in early-stage research and undergraduate modelling: infer an effective parameter first, then refine into deeper fluid-dynamics later.
 
@@ -82,16 +82,16 @@ Analytic solutions for projectile range **with quadratic drag** are generally no
 
 ### Integration scheme
 - **RK4 (4th-order Runge–Kutta)** time-stepping for state:
-  \[
+  $$\[
   \text{state} = (x, y, v_x, v_y)
-  \]
+  \]$$
 - Each step uses:
-  \[
+  $$\[
   \dot{x}=v_x,\quad \dot{y}=v_y,\quad
   \dot{v_x}= -\frac{k_\mathrm{eff}}{m} v v_x,\quad
   \dot{v_y}= -g -\frac{k_\mathrm{eff}}{m} v v_y
-  \]
-- **Ground-hit interpolation**: when \(y\) crosses 0, range is estimated by linear interpolation between the last positive and first non-positive step.
+  \]$$
+- **Ground-hit interpolation**: when $$\(y\)$$ crosses 0, range is estimated by linear interpolation between the last positive and first non-positive step.
 
 ### Why RK4?
 - stable + accurate for smooth ODEs
@@ -100,9 +100,9 @@ Analytic solutions for projectile range **with quadratic drag** are generally no
 
 ### Computational workflow
 - Range trials → mean range per fin ratio
-- Control condition used to estimate launch speed \(v_0\) (no-drag baseline):
-  \[R_0 \approx \frac{v_0^2}{g} \;\Rightarrow\; v_0 \approx \sqrt{R_0 g}\]
-- Then solve for \(k_\mathrm{eff}\) per fin ratio by matching simulated range to measured range (bisection on \(k\)).
+- Control condition used to estimate launch speed $$\(v_0\)$$ (no-drag baseline):
+  $$\[R_0 \approx \frac{v_0^2}{g} \;\Rightarrow\; v_0 \approx \sqrt{R_0 g}\]$$
+- Then solve for $$\(k_\mathrm{eff}\)$$ per fin ratio by matching simulated range to measured range (bisection on $$\(k\)$$).
 
 ## 📦 Repository layout:
 
