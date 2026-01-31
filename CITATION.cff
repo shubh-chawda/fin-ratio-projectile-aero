@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: "Fin Ratio Projectile Aerodynamics: range & velocity decay (code + data)"
+message: "If you use this repository, please cite it."
+type: software
+
+authors:
+  - family-names: "Chawda"
+    given-names: "Shubh"
+    affiliation: "University of Manchester"
+
+repository-code: "https://github.com/shubh-chawda/fin-ratio-projectile-aero"
+url: "https://github.com/shubh-chawda/fin-ratio-projectile-aero"
+license: "MIT"
+
+doi: "doi.org/10.5281/zenodo.18443083"
+
+date-released: "2026-01-31"
+
+preferred-citation:
+  type: report
+  title: "Aerodynamic Effects of Fin Length-to-Diameter Ratio on Spherical Projectile Range and Velocity Decay"
+  authors:
+    - family-names: "Chawda"
+      given-names: "Shubh"
+
+  doi: "doi.org/10.5281/zenodo.18434071"
+  year: 2026
