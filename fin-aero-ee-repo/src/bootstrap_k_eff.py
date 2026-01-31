@@ -25,6 +25,16 @@ G = 9.81
 MASS = 0.250
 THETA_DEG = 45.0
 
+# Speed settings (fast but still research-y)
+DT = 2e-3          # was 1e-3
+N_BOOT = 250       # was 1200
+N_BISECT = 35      # was 60
+
+# Precompute angle trig once
+_THETA = math.radians(THETA_DEG)
+_COS_T = math.cos(_THETA)
+_SIN_T = math.sin(_THETA)
+
 
 def ensure_dirs() -> None:
     OUT_FIG.mkdir(parents=True, exist_ok=True)
@@ -39,10 +49,14 @@ def _load_trials() -> dict[float, np.ndarray]:
       - outlier_additional_trials.csv (trial6..trial10 for 0.75 and 1.00)
     """
     df = pd.read_csv(DATA / "horizontal_range_trials.csv")
-    trials = {}
+    trials: dict[float, np.ndarray] = {}
+
     for _, r in df.iterrows():
         fin = float(r["fin_ratio"])
-        arr = np.array([r["trial1"], r["trial2"], r["trial3"], r["trial4"], r["trial5"]], dtype=float)
+        arr = np.array(
+            [r["trial1"], r["trial2"], r["trial3"], r["trial4"], r["trial5"]],
+            dtype=float
+        )
         trials[fin] = arr
 
     df_extra = pd.read_csv(DATA / "outlier_additional_trials.csv")
@@ -70,18 +84,23 @@ def rk4_step(state: np.ndarray, dt: float, k_eff: float) -> np.ndarray:
     k2 = deriv_quad(state + 0.5 * dt * k1, k_eff)
     k3 = deriv_quad(state + 0.5 * dt * k2, k_eff)
     k4 = deriv_quad(state + dt * k3, k_eff)
-    return state + (dt / 6.0) * (k1 + 2*k2 + 2*k3 + k4)
+    return state + (dt / 6.0) * (k1 + 2 * k2 + 2 * k3 + k4)
 
 
-def simulate_range_quad(v0: float, theta_deg: float, k_eff: float, dt: float = 1e-3, t_max: float = 5.0) -> float:
-    theta = math.radians(theta_deg)
-    vx0 = v0 * math.cos(theta)
-    vy0 = v0 * math.sin(theta)
+def simulate_range_quad(v0: float, k_eff: float, dt: float = DT, t_max: float = 5.0) -> float:
+    """
+    Simulate until projectile hits y=0 again; return horizontal range.
+    Uses RK4 integration.
+
+    Starts at y=0, so we detect ground-crossing only after y becomes positive first.
+    """
+    vx0 = v0 * _COS_T
+    vy0 = v0 * _SIN_T
     state = np.array([0.0, 0.0, vx0, vy0], dtype=float)
 
     t = 0.0
     y_was_positive = False
-    x_prev, y_prev = state[0], state[1]
+    x_prev, y_prev = float(state[0]), float(state[1])
 
     while t < t_max:
         state = rk4_step(state, dt, k_eff)
@@ -92,7 +111,7 @@ def simulate_range_quad(v0: float, theta_deg: float, k_eff: float, dt: float = 1
             y_was_positive = True
 
         if y_was_positive and (y_prev > 0.0) and (y <= 0.0):
-            frac = y_prev / (y_prev - y)
+            frac = y_prev / (y_prev - y)  # linear interpolation to y=0
             x_cross = x_prev + frac * (x - x_prev)
             return float(x_cross)
 
@@ -102,24 +121,29 @@ def simulate_range_quad(v0: float, theta_deg: float, k_eff: float, dt: float = 1
 
 
 def fit_k_for_target_range(v0: float, target_range: float) -> float:
-    r0 = simulate_range_quad(v0, THETA_DEG, 0.0)
+    """
+    Find k_eff such that simulated_range(k_eff) ~= target_range using bisection.
+    """
+    r0 = simulate_range_quad(v0, k_eff=0.0)
     if target_range >= r0 * 0.999:
         return 0.0
 
     k_hi = 0.05
-    r_hi = simulate_range_quad(v0, THETA_DEG, k_hi)
+    r_hi = simulate_range_quad(v0, k_eff=k_hi)
+
     while r_hi > target_range and k_hi < 200:
         k_hi *= 2.0
-        r_hi = simulate_range_quad(v0, THETA_DEG, k_hi)
+        r_hi = simulate_range_quad(v0, k_eff=k_hi)
 
     k_lo = 0.0
-    for _ in range(60):
+    for _ in range(N_BISECT):
         k_mid = 0.5 * (k_lo + k_hi)
-        r_mid = simulate_range_quad(v0, THETA_DEG, k_mid)
+        r_mid = simulate_range_quad(v0, k_eff=k_mid)
         if r_mid > target_range:
             k_lo = k_mid
         else:
             k_hi = k_mid
+
     return 0.5 * (k_lo + k_hi)
 
 
@@ -129,14 +153,16 @@ def main() -> None:
     fins = sorted(trials.keys())
 
     rng = np.random.default_rng(42)
-    n_boot = 1200
 
     # Bootstrap: resample control trials to get v0 each time (propagates v0 uncertainty)
     control_trials = trials[0.0]
 
-    boot_k = {fin: [] for fin in fins}
+    boot_k: dict[float, list[float]] = {fin: [] for fin in fins}
 
-    for _ in range(n_boot):
+    for i in range(N_BOOT):
+        if (i + 1) % 25 == 0:
+            print(f"bootstrap {i+1}/{N_BOOT}", flush=True)
+
         R0 = float(rng.choice(control_trials, size=len(control_trials), replace=True).mean())
         v0 = math.sqrt(R0 * G)
 
