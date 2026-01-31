@@ -7,6 +7,7 @@ This repository contains **data + Python code** to reproduce core plots from my 
 - A simple **Spearman correlation** heatmap across key variables
 
 > Preprint (Zenodo): **https://doi.org/10.5281/zenodo.18434071**
+> Code (Zenodo): **https://doi.org/10.5281/zenodo.18443083**
 
 ## What’s inside
 
@@ -41,7 +42,7 @@ Figures will appear in `outputs/figures/`.
 
 ## Citation
 
-If you use or build on this work, please cite the Zenodo preprint (and optionally the code once you add a Zenodo release).
+If you use or build on this work, please cite the Zenodo preprint and code.
 
 ## License
 
