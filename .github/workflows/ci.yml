@@ -23,12 +23,14 @@ jobs:
           pip install -r requirements.txt
 
       - name: Generate core figures
+        working-directory: fin-aero-ee-repo
         run: |
           python -m src.make_figures
           python -m src.fit_drag_model
           python -m src.model_compare
 
       - name: Fast bootstrap (CI-mode)
+        working-directory: fin-aero-ee-repo
         env:
           N_BOOT: "40"
           DT: "0.003"
