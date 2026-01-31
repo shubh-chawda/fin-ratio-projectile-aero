@@ -9,7 +9,7 @@
 [![Python](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-[**Read the Paper**](https://doi.org/10.5281/zenodo.18443071) | [**View Notebooks**](./fin-aero-ee-repo/notebooks) | [**Report Bug**](../../issues)
+[**Read the Paper**](https://doi.org/10.5281/zenodo.18434071) | [**View Notebooks**](./fin-aero-ee-repo/notebooks) | [**Report Bug**](../../issues)
 
 </div>
 
