@@ -6,7 +6,7 @@ This repository contains **data + Python code** to reproduce core plots from my 
 - **Velocity decay vs fin length-to-diameter ratio**
 - A simple **Spearman correlation** heatmap across key variables
 
-> Preprint (Zenodo): **[ADD YOUR ZENODO DOI LINK HERE]**
+> Preprint (Zenodo): **https://doi.org/10.5281/zenodo.18434071**
 
 ## What’s inside
 
