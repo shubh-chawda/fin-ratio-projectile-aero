@@ -25,8 +25,6 @@ The study identifies an anomaly at **$0.75\times$ Fin-Length-to-Diameter ($L/D$)
 
 ## ✨ Why This Exists (The "Anti-PDF" Philosophy)
 
-Most research ends as a static PDF. This repository converts the **IB Physics Extended Essay** into a living, auditable code base.
-
 | Feature | Standard PDF Essay | 🚀 Fin-Aero Repository |
 | :--- | :--- | :--- |
 | **Data Source** | Static Tables (Hard to check) | **Raw CSVs** (Auditable & Open) |
