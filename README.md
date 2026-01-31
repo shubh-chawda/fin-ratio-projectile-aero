@@ -300,8 +300,8 @@ To resolve the **0.75x Anomaly** and further refine the physics engine, the foll
 * **🌬️ Wind Tunnel PIV (Particle Image Velocimetry):**
     Direct measurement of the wake field to quantify the boundary layer separation point. This would empirically determine if the "fins" are acting as turbulators (delaying separation) or airbrakes.
 
-* **📉 Variable-$C_d$ Solvers:**
-    Upgrade the RK4 engine to support a dynamic drag coefficient $C_d(Re)$, implementing a lookup table based on standard sphere-drag curves rather than a fixed constant.
+* **📉 Variable-$$C_d$$ Solvers:**
+    Upgrade the RK4 engine to support a dynamic drag coefficient $$C_d(Re)$$, implementing a lookup table based on standard sphere-drag curves rather than a fixed constant.
 
 ---
 
