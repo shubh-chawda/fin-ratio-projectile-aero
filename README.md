@@ -1,3 +1,12 @@
+<p align="left">
+  <a href="https://github.com/shubh-chawda/fin-ratio-projectile-aero/actions/workflows/ci.yml">
+    <img src="https://github.com/shubh-chawda/fin-ratio-projectile-aero/actions/workflows/ci.yml/badge.svg" alt="CI">
+  </a>
+  <a href="https://doi.org/10.5281/zenodo.XXXXXXX">
+    <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.18443083.svg" alt="DOI">
+  </a>
+</p>
+
 # Aerodynamic effects of fin length-to-diameter ratio on spherical projectile range and velocity decay
 
 This repository contains **data + Python code** to reproduce core plots from my IB Physics Extended Essay (May 2025):
