@@ -247,6 +247,24 @@ The following high-resolution figures are generated automatically by the pipelin
 
 ![Heatmap](./fin-aero-ee-repo/figures/spearman_heatmap.png)
 
+### 5. Model Fit Check: Range (Observed vs Drag-Model Fit)
+`figures/drag_model_range_fit.png`
+> **Figure 5:** Range validation plot showing **observed EE mean range** vs the **quadratic-drag model fit** after inverse fitting $k_{\text{eff}}$ (range-matching via bisection) for each fin ratio. This acts as a pipeline sanity check: the numerical integrator + fitting routine reproduce the overall trend (including the non-linear bump region) when calibrated to range.
+
+![Range Fit](./fin-aero-ee-repo/figures/drag_model_range_fit.png)
+
+### 6. Model Validation: Velocity Decay (Observed vs Predicted — Quadratic vs Linear Drag)
+`figures/velocity_decay_model_compare.png`
+> **Figure 6:** Time-domain validation comparing **observed EE velocity decay** (slope of speed vs time) against predictions from both **quadratic drag** and a **linear drag baseline**. While both models capture the overall geometry trend, they **systematically underpredict the magnitude** of deceleration (observed decay is more negative), suggesting that fitting to range alone does not fully constrain instantaneous energy loss (or that additional unmodelled effects/measurement definitions contribute).
+
+![Velocity Decay Model Compare](./fin-aero-ee-repo/figures/velocity_decay_model_compare.png)
+
+### 7. Bootstrap Uncertainty: $k_{\text{eff}}$ vs Fin Ratio (Median ± 95% CI)
+`figures/k_eff_vs_fin_bootstrap_ci.png`
+> **Figure 7:** Bootstrap-based uncertainty quantification for the fitted **effective quadratic-drag parameter** $k_{\text{eff}}$. For each fin ratio, we resample trials and refit $k_{\text{eff}}$ repeatedly, plotting the **median** estimate with **95% confidence intervals**. This highlights where parameter inference is stable vs where measurement variability produces wider uncertainty bands.
+
+![Bootstrap k_eff CI](./fin-aero-ee-repo/figures/k_eff_vs_fin_bootstrap_ci.png)
+
 ## ⚠️ Limitations & Theoretical Constraints
 
 While this study successfully quantifies the macroscopic aerodynamic effects of fin geometry, the **Quadratic Drag Model** ($F_D \propto v^2$) serves as a first-order approximation. Several higher-order fluid dynamics effects were simplified:
