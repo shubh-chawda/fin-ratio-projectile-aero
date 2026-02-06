@@ -1,4 +1,13 @@
-# Repo-root Makefile (flat layout)
+# Repo-root Makefile
+# Usage:
+#   make venv
+#   make lock
+#   make all
+#   make ci
+#   make test
+#   make demo
+#   make demo-plot
+#   make clean
 
 ROOT := $(abspath $(CURDIR))
 
@@ -81,3 +90,4 @@ clean:
 	rm -rf outputs
 	rm -rf data/processed
 	rm -f  $(VENV_STAMP)
+
