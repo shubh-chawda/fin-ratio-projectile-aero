@@ -17,19 +17,7 @@ outputs/
 # Local secrets/config
 .env
 .venv/
-__pycache__/
-*.pyc
-.DS_Store
 outputs/
 results/
 data/processed/
-
-# Jupyter
-**/.ipynb_checkpoints/
-
-# macOS
-.DS_Store
-
-# Jupyter
-**/.ipynb_checkpoints/
 
