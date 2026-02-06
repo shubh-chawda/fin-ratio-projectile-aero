@@ -19,7 +19,6 @@ REQ_TXT  := requirements.txt
 REQ_LOCK := requirements.lock.txt
 REQ_FILE := $(if $(wildcard $(REQ_LOCK)),$(REQ_LOCK),$(REQ_TXT))
 
-# Stamp so deps re-install when requirements change
 VENV_STAMP := $(VENV)/.installed
 
 .DEFAULT_GOAL := help
@@ -38,7 +37,7 @@ help:
 	@echo "  make demo-plot  - run demo + save trajectory plot"
 	@echo "  make all        - run core + bootstrap + timestep"
 	@echo "  make ci         - faster settings for CI (small bootstrap)"
-	@echo "  make clean      - remove generated outputs (keeps raw data)"
+	@echo "  make clean      - remove generated outputs + processed data (keeps raw data)"
 
 venv: $(VENV_STAMP)
 
