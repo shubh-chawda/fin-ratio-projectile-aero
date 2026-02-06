@@ -24,7 +24,7 @@ DATA = ROOT / "data" / "raw"
 OUT_FIG = ROOT / "outputs" / "figures"
 OUT_DATA = ROOT / "data" / "processed"
 
-# Physical constants (as used/assumed in the EE context)
+# Physical constants 
 G = 9.81           # m/s^2
 MASS = 0.250       # kg (250 g sphere)
 THETA_DEG = 45.0   # launch angle fixed in experiment
