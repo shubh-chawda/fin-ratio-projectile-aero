@@ -23,9 +23,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-        python -m pip install --upgrade pip
-        if [ -f requirements.lock.txt ]; then pip install -r requirements.lock.txt; else pip install -r requirements.txt; fi
-
+          python -m pip install --upgrade pip
+          if [ -f requirements.lock.txt ]; then
+            pip install -r requirements.lock.txt
+          else
+            pip install -r requirements.txt
+          fi
 
       - name: Generate core figures
         run: |
@@ -38,6 +41,9 @@ jobs:
           N_BOOT: "40"
           DT: "0.003"
           N_BISECT: "25"
+        run: |
+          python -m src.bootstrap_k_eff
+
         run: |
           python -m src.bootstrap_k_eff
 
