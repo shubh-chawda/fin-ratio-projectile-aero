@@ -60,7 +60,8 @@ jobs:
       - name: Demo
         run: |
           python -m src.demo --fin-ratio 0.75
-
+          
+      - name: Bootstrap k
         run: |
           python -m src.bootstrap_k_eff
 
