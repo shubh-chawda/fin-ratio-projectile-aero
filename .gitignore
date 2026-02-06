@@ -11,13 +11,6 @@ venv/
 # Jupyter
 .ipynb_checkpoints/
 
-# Generated outputs
-outputs/
-
 # Local secrets/config
 .env
-.venv/
-outputs/
-results/
-data/processed/
 
