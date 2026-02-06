@@ -3,6 +3,10 @@ Fit an effective quadratic-drag parameter k_eff for each fin ratio by matching m
 
 Run:
     python -m src.fit_drag_model
+    python -m src.fit_drag_model --dt 0.0015
+
+Environment override:
+    DT=0.0015 python -m src.fit_drag_model
 
 Outputs:
     outputs/figures/effective_drag_k_vs_fin.png
@@ -13,6 +17,8 @@ from __future__ import annotations
 
 from pathlib import Path
 import math
+import os
+import argparse
 
 import numpy as np
 import pandas as pd
@@ -87,13 +93,41 @@ def rk4_step(state: np.ndarray, dt: float, k_eff: float) -> np.ndarray:
     return state + (dt / 6.0) * (k1 + 2*k2 + 2*k3 + k4)
 
 
-def simulate_range(v0: float, theta_deg: float, k_eff: float, dt: float = 1e-3, t_max: float = 5.0) -> float:
+def resolve_dt(dt: float | None, default: float = 1e-3) -> float:
+    """
+    Priority:
+      1) explicit argument dt (passed from main)
+      2) environment variable DT
+      3) default
+    """
+    if dt is not None:
+        return float(dt)
+
+    env_dt = os.environ.get("DT", "").strip()
+    if env_dt:
+        try:
+            return float(env_dt)
+        except ValueError:
+            raise ValueError(f"Invalid DT environment value: {env_dt!r}")
+
+    return float(default)
+
+
+def simulate_range(
+    v0: float,
+    theta_deg: float,
+    k_eff: float,
+    dt: float | None = None,
+    t_max: float = 5.0,
+) -> float:
     """
     Simulate until projectile hits y=0 again; return horizontal range.
     Uses RK4 integration.
 
     Note: starts at y=0, so we detect ground-crossing only after y becomes positive first.
     """
+    dt = resolve_dt(dt, default=1e-3)
+
     theta = math.radians(theta_deg)
     vx0 = v0 * math.cos(theta)
     vy0 = v0 * math.sin(theta)
@@ -125,27 +159,27 @@ def simulate_range(v0: float, theta_deg: float, k_eff: float, dt: float = 1e-3, 
     return float(state[0])
 
 
-def fit_k_for_target_range(v0: float, theta_deg: float, target_range: float) -> float:
+def fit_k_for_target_range(v0: float, theta_deg: float, target_range: float, dt: float | None = None) -> float:
     """
     Find k_eff such that simulated_range(k_eff) ~= target_range using monotonic bisection.
     """
     # Ideal (k=0) range is the maximum; if target is at/near ideal, return ~0.
-    r0 = simulate_range(v0, theta_deg, k_eff=0.0)
+    r0 = simulate_range(v0, theta_deg, k_eff=0.0, dt=dt)
     if target_range >= r0 * 0.999:  # allow tiny numerical tolerance
         return 0.0
 
     # Find an upper bound where range is <= target
     k_hi = 0.05
-    r_hi = simulate_range(v0, theta_deg, k_eff=k_hi)
+    r_hi = simulate_range(v0, theta_deg, k_eff=k_hi, dt=dt)
     while r_hi > target_range and k_hi < 100:
         k_hi *= 2.0
-        r_hi = simulate_range(v0, theta_deg, k_eff=k_hi)
+        r_hi = simulate_range(v0, theta_deg, k_eff=k_hi, dt=dt)
 
     k_lo = 0.0
     # Bisection
     for _ in range(60):
         k_mid = 0.5 * (k_lo + k_hi)
-        r_mid = simulate_range(v0, theta_deg, k_eff=k_mid)
+        r_mid = simulate_range(v0, theta_deg, k_eff=k_mid, dt=dt)
         if r_mid > target_range:
             k_lo = k_mid
         else:
@@ -154,21 +188,40 @@ def fit_k_for_target_range(v0: float, theta_deg: float, target_range: float) -> 
     return 0.5 * (k_lo + k_hi)
 
 
+def parse_args() -> argparse.Namespace:
+    p = argparse.ArgumentParser(add_help=True)
+    p.add_argument("--dt", type=float, default=None, help="Timestep (overrides DT env var if provided).")
+    return p.parse_args()
+
+
 def main() -> None:
+    args = parse_args()
     ensure_dirs()
     df = load_corrected_ranges()
     v0 = estimate_v0_from_control(df)
+
+    dt_used = resolve_dt(args.dt, default=1e-3)
 
     rows = []
     for _, row in df.iterrows():
         fin = float(row["fin_ratio"])
         R_obs = float(row["avg_range_m_used"])
-        k_eff = fit_k_for_target_range(v0, THETA_DEG, R_obs)
-        R_sim = simulate_range(v0, THETA_DEG, k_eff)
-        rows.append({"fin_ratio": fin, "avg_range_obs_m": R_obs, "k_eff_kg_per_m": k_eff, "range_sim_m": R_sim})
+        k_eff = fit_k_for_target_range(v0, THETA_DEG, R_obs, dt=dt_used)
+        R_sim = simulate_range(v0, THETA_DEG, k_eff, dt=dt_used)
+        rows.append(
+            {
+                "fin_ratio": fin,
+                "avg_range_obs_m": R_obs,
+                "k_eff_kg_per_m": k_eff,
+                "range_sim_m": R_sim,
+                "dt_used_s": dt_used,
+            }
+        )
 
     out = pd.DataFrame(rows)
-    out.to_csv(OUT_DATA / "effective_drag_fit.csv", index=False)
+
+    # Save with high precision so timestep comparisons don't get rounded to identical values
+    out.to_csv(OUT_DATA / "effective_drag_fit.csv", index=False, float_format="%.15g")
 
     # Plot 1: k_eff vs fin ratio
     plt.figure()
@@ -192,6 +245,7 @@ def main() -> None:
     plt.savefig(OUT_FIG / "drag_model_range_fit.png", dpi=200)
     plt.close()
 
+    print(f"DT used: {dt_used:g} s")
     print(f"Estimated v0 (from 0.00x control, no-drag): {v0:.3f} m/s")
     print("Saved:")
     print(" - outputs/figures/effective_drag_k_vs_fin.png")

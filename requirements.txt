@@ -1,5 +1,6 @@
 numpy
 pandas
 matplotlib
+pytest>=8.0
 scipy
 tqdm

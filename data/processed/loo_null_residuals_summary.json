@@ -1,0 +1,28 @@
+{
+  "n_boot": 5000,
+  "seed": 123,
+  "ratios": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0,
+    1.25,
+    1.5,
+    1.75,
+    2.0
+  ],
+  "most_anomalous_ratio": 0.75,
+  "most_anomalous_residual_m": -0.16315000000000035,
+  "most_anomalous_residual_ci_95_m": [
+    -0.18195125000000006,
+    -0.14170000000000016
+  ],
+  "count_ratios_with_ci_excluding_0": 5,
+  "outputs": {
+    "table_csv": "data/processed/loo_null_residuals.csv",
+    "fig_means": "outputs/figures/loo_null_fit_means.png",
+    "fig_residuals": "outputs/figures/loo_null_fit_residuals.png"
+  },
+  "decision_rule": "A ratio is 'anomalous' if the 95% bootstrap CI of its LOO residual excludes 0."
+}
