@@ -1,7 +1,0 @@
-.venv/
-__pycache__/
-.DS_Store
-
-outputs/*
-!outputs/figures/
-!outputs/figures/*.png
