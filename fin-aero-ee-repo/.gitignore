@@ -2,6 +2,9 @@
 __pycache__/
 .DS_Store
 
-outputs/*
-!outputs/figures/
-!outputs/figures/*.png
+# python
+**/__pycache__/
+*.pyc
+.venv/
+
+.ipynb_checkpoints/

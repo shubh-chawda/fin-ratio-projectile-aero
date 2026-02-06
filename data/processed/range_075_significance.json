@@ -1,0 +1,18 @@
+{
+  "target_ratio": 0.75,
+  "n_boot": 5000,
+  "seed": 123,
+  "observed_mean_at_target_m": 1.7160999999999997,
+  "null_pred_at_target_m": 1.87925,
+  "observed_residual_m": -0.16315000000000035,
+  "bootstrap_ci_95_residual_m": [
+    -0.18195125000000006,
+    -0.14170000000000016
+  ],
+  "bootstrap_two_sided_sign_p": 0.0,
+  "criterion": "Significant if 95% bootstrap CI for residual excludes 0.",
+  "figures": {
+    "null_fit_plot": "outputs/figures/range_075_null_fit.png",
+    "residual_hist": "outputs/figures/range_075_residual_bootstrap.png"
+  }
+}
