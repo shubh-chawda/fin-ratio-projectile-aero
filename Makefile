@@ -1,19 +1,29 @@
-# Root Makefile (repo-level)
+# Repo-root Makefile
+# Usage:
+#   make venv
+#   make lock
+#   make all
+#   make ci
+#   make test
+#   make demo
+#   make demo-plot
+#   make clean
 
 ROOT := $(abspath $(CURDIR))
-SUBDIR := .
 
-VENV    := $(ROOT)/.venv
-PY      := $(VENV)/bin/python
-PIP     := $(VENV)/bin/pip
+VENV := $(ROOT)/.venv
+PY   := $(VENV)/bin/python
+PIP  := $(VENV)/bin/pip
 
 REQ_TXT  := requirements.txt
 REQ_LOCK := requirements.lock.txt
 REQ_FILE := $(if $(wildcard $(REQ_LOCK)),$(REQ_LOCK),$(REQ_TXT))
 
+# Stamp so deps re-install when requirements change
 VENV_STAMP := $(VENV)/.installed
 
 .DEFAULT_GOAL := help
+
 .PHONY: help venv install lock core timestep bootstrap all ci clean test demo demo-plot
 
 help:
@@ -33,7 +43,7 @@ help:
 venv: $(VENV_STAMP)
 
 $(VENV_STAMP): $(REQ_FILE)
-	@if [ ! -d "$(VENV)" ]; then python3 -m venv $(VENV); fi
+	python3 -m venv $(VENV)
 	$(PY) -m pip install --upgrade pip
 	$(PIP) install -r $(REQ_FILE)
 	$(PY) -m pip check
@@ -42,7 +52,7 @@ $(VENV_STAMP): $(REQ_FILE)
 install: venv
 
 lock: venv
-	$(PY) -m pip freeze --all | sort > requirements.lock.txt
+	$(PY) -m pip freeze --all | sort > $(REQ_LOCK)
 	$(PY) -m pip check
 	@echo "Wrote: $(REQ_LOCK)"
 
@@ -78,8 +88,7 @@ ci: venv
 	$(PY) -m src.demo --fin-ratio 0.75
 
 clean:
-	rm -rf outputs/
-	rm -rf outputs/timestep_sensitivity
-	rm -f  data/processed/*.csv
+	rm -rf outputs
+	rm -rf data/processed
 	rm -f  $(VENV_STAMP)
 
