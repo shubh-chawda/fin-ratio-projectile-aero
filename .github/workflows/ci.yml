@@ -16,15 +16,27 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: |
+            requirements.txt
+            requirements.lock.txt
 
-      # optional but nice: faster pip installs
-      - name: Cache pip
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('fin-aero-ee-repo/requirements.txt', 'fin-aero-ee-repo/requirements.lock.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
 
-      - name: Run CI pipeline (Makefile)
-        run: make ci
+      - name: Generate core figures
+        run: |
+          python -m src.make_figures
+          python -m src.fit_drag_model
+          python -m src.model_compare
+
+      - name: Fast bootstrap (CI-mode)
+        env:
+          N_BOOT: "40"
+          DT: "0.003"
+          N_BISECT: "25"
+        run: |
+          python -m src.bootstrap_k_eff
+
