@@ -129,7 +129,7 @@ While drag generally increases with fin size (as expected due to surface area), 
 </p>
 
 ### The Splitter Plate Effect
-The data suggests that at $L/D \approx 1.0$, the fins act as a **splitter plate**. Instead of adding to the turbulent wake, they stabilize the airflow behind the sphere, delaying boundary layer separation and reducing the pressure drag.
+The data suggests that at $L/D \approx 1.0$, the fins act as a **splitter plate**. Instead of adding to the turbulent wake, they stabilize the airflow behind the sphere, consistent with delaying boundary layer separation and reducing the pressure drag.
 
 | Fin Ratio ($L/D$) | Fitted $k_{eff}$ ($\text{kg/m}$) | Aerodynamic Regime |
 | :---: | :---: | :--- |
