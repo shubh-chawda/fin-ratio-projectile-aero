@@ -87,7 +87,7 @@ $$\vec{F}_d = -\frac{1}{2} \rho A C_d v \vec{v} = -k_{eff} v \vec{v}$$
 
 Where $k_{eff}$ (Effective Drag Parameter) aggregates air density, cross-sectional area, and the drag coefficient into a single inferable parameter.
 
-### Algorithm
+### Algorithm & Complexity
 The inverse modeling pipeline is implemented in [`src/fit_drag_model.py`](src/fit_drag_model.py).
 
 1.  **Forward Simulation (RK4):**
