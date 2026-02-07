@@ -41,12 +41,12 @@
 ## 🔭 1. Background & Motivation
 
 ### Experimental Context
-This project serves as a computational extension of my physics research, *"An Investigation of the Aerodynamic Effects of Fin-Length-to-Diameter Ratio on Spherical Projectiles"*.
+This project serves as a computational extension of my extended essay physics research, *"An Investigation of the Aerodynamic Effects of Fin-Length-to-Diameter Ratio on Spherical Projectiles"*.
 
-The original experiment explored how attaching fins of varying lengths affects the flight path of a projectile. Using a spring-loaded launcher and high-speed video tracking ($240 \text{ fps}$), I collected range and velocity data for 250g steel spheres with **Fin-Length-to-Diameter Ratios ($L/D$)** ranging from $0.0$ to $2.0$.
+The original experiment explored how attaching fins of varying lengths affects the flight path of a projectile. Using a spring-loaded launcher and high-speed video tracking ($240 \text{ fps}$), we collected range and velocity data for 250g steel spheres with **Fin-Length-to-Diameter Ratios ($L/D$)** ranging from $0.0$ to $2.0$.
 
 ### Observed Anomaly
-Intuitively, increasing the surface area of a projectile (by adding larger fins) is expected to increase aerodynamic drag and reduce range. My general results supported this, showing a strong negative correlation between fin length and horizontal range.
+Intuitively, increasing the surface area of a projectile (by adding larger fins) is expected to increase aerodynamic drag and reduce range. The general results supported this, showing a strong negative correlation between fin length and horizontal range.
 
 <p align="center">
   <img src="outputs/pro_telemetry.gif" width="80%" alt="Animated Comparison: Drag Reduction Effect">
@@ -68,20 +68,20 @@ However, the data revealed an unexpected deviation from this trend. Between the 
 </p>
 
 ### Research Goal
-This observation pointed towards a potential aerodynamic regime shift—possibly due to wake stabilization or a "splitter plate" effect—that could not be fully explained by a simple linear analysis.
+This observation pointed towards a potential aerodynamic regime shift—possibly due to wake stabilization or a splitter plate effect that could not be fully explained by a simple linear analysis.
 
-The goal of this repository is to apply **rigorous computational methods** to the original dataset to:
+The goal of this repository is to apply **computational methods** to the original dataset to:
 1.  Mathematically quantify the effective drag coefficients ($k_{eff}$) for each flight.
-2.  Determine if the observed "dip" is statistically significant or merely experimental noise.
+2.  Determine if the observed dip is statistically significant or experimental noise.
 
 ---
 
 ## 💻 2. Computational Methods: The Inverse Solver
 
 ### The Physics Model
-To understand the *cause* of the range anomaly, I needed to move beyond simple averages and determine the aerodynamic properties of the projectile.
+To understand the *cause* of the range anomaly, we need to move beyond simple averages and determine the aerodynamic properties of the projectile.
 
-I modeled the projectile's motion using a coupled system of Ordinary Differential Equations (ODEs) incorporating **Quadratic Drag**, which is appropriate for high-Reynolds-number flight:
+We model the projectile's motion using a coupled system of Ordinary Differential Equations (ODEs) incorporating **Quadratic Drag**, which is appropriate for high-Reynolds-number flight:
 
 $$\vec{F}_d = -\frac{1}{2} \rho A C_d v \vec{v} = -k_{eff} v \vec{v}$$
 
@@ -116,9 +116,9 @@ The inverse modeling pipeline is implemented in [`src/fit_drag_model.py`](src/fi
 ## 📉 3. The Discovery: Regime Shift
 
 ### Inferring the "Hidden" Variable
-By solving for $k_{eff}$ across all fin ratios, I uncovered the aerodynamic behavior hidden within the raw range data. The resulting curve reveals a stark **non-monotonic relationship**.
+By solving for $k_{eff}$ across all fin ratios, we uncover the aerodynamic behavior hidden within the raw range data. The resulting curve reveals a **non-monotonic relationship**.
 
-While drag generally increases with fin size (as expected due to surface area), there is a distinct **"Drag Reduction Regime"** between $L/D=0.75$ and $1.00$.
+While drag generally increases with fin size (as expected due to surface area), there is a drag reduction regime between $L/D=0.75$ and $1.00$.
 
 <p align="center">
   <img src="outputs/effective_drag_k_vs_fin.png" width="60%" alt="Figure 4: Effective Drag vs Fin Ratio">
@@ -144,7 +144,7 @@ This quantitative drop—**$k_{eff}$ decreases by ~54%** when moving from ratio 
 ## 📊 4. Statistical Rigor
 
 ### Uncertainty Quantification
-To ensure that the "drag dip" wasn't an artifact of experimental variance, I performed a **Bootstrap Resampling analysis ($N=5000$)**. By resampling the original trial data with replacement, I generated 95% Confidence Intervals (CI) for the effective drag parameter $k_{eff}$.
+To ensure that the reduction in drag wasn't an artifact of experimental variance, we perform a **Bootstrap Resampling analysis ($N=5000$)**. By resampling the original trial data with replacement, we generated 95% Confidence Intervals (CI) for the effective drag parameter $k_{eff}$.
 
 <p align="center">
   <img src="outputs/k_eff_vs_fin_bootstrap_ci.png" width="60%" alt="Figure 5: Bootstrap Confidence Intervals">
@@ -153,10 +153,10 @@ To ensure that the "drag dip" wasn't an artifact of experimental variance, I per
   <b>Figure 5:</b> Bootstrap estimation of $k_{eff}$ (95% CI). The error bars for $L/D=0.75$ and $L/D=1.00$ do not overlap, confirming that the aerodynamic difference between these two configurations is statistically significant.
 </p>
 
-### Hypothesis Testing: The "Monotonic Null"
-I rigorously tested the "Splitter Plate" hypothesis against a **Monotonic Null Model**, which assumes that drag *must* increase as fin size increases.
+### Hypothesis Testing
+We test the hypothesis against a **Monotonic Null Model**, which assumes that drag *must* increase as fin size increases.
 
-Using a **Leave-One-Out (LOO)** approach, I trained a monotonic regression on all data points *except* the anomaly at $L/D=0.75$ and used it to predict the expected range.
+Using a **Leave-One-Out (LOO)** approach, we trained a monotonic regression on all data points *except* the anomaly at $L/D=0.75$ and used it to predict the expected range.
 
 <p align="center">
   <img src="outputs/range_075_null_fit.png" width="48%" alt="Figure 6: Null Model Fit">
@@ -172,9 +172,9 @@ Using a **Leave-One-Out (LOO)** approach, I trained a monotonic regression on al
 ## ✅ 5. Model Validation
 
 ### Justifying the Physics Engine
-The inverse solver assumes a **Quadratic Drag Law** ($F_d \propto v^2$). To validate this choice, I tested the model against a secondary dataset: **Velocity Decay** (instantaneous deceleration), which was *not* used to train the model.
+The inverse solver assumes a **Quadratic Drag Law** ($F_d \propto v^2$). To validate this choice, we tested the model against a secondary dataset: **Velocity Decay** (instantaneous deceleration), which was *not* used to train the model.
 
-I compared the predictions of a **Linear Drag Model** ($F_d \propto v$) versus the **Quadratic Model** used in this study.
+We compared the predictions of a **Linear Drag Model** ($F_d \propto v$) versus the **Quadratic Model** used in this study.
 
 <p align="center">
   <img src="outputs/velocity_decay_model_compare.png" width="48%" alt="Figure 8: Model Comparison">
@@ -211,10 +211,9 @@ python -m src.demo --fin-ratio 0.75 --plot
 ```
 
 ## Numerical Stability Verification
+To ensure the results were not an artifact of integration error, we performed a **Timestep Sensitivity Analysis**.
 
-To ensure the "drag dip" results were not an artifact of integration error, I performed a **Timestep Sensitivity Analysis**.
-
-I re-ran the entire inverse modeling pipeline with refined timesteps *(dt, dt/2, dt/4)* to check for drift in the results.
+We re-ran the entire inverse modeling pipeline with refined timesteps *(dt, dt/2, dt/4)* to check for drift in the results.
 
 - **Baseline:** $$\( dt = 3.0 \,\mathrm{ms} \)$$
 - **Result:** Reducing $$\( dt \)$$ to $$\( 1.5 \,\mathrm{ms} \)$$ changed the inferred $$\( k_{eff} \)$$ by less than **0.007%**.
@@ -229,10 +228,6 @@ Contributions are welcome! If you find an issue in the physics engine or want to
 ---
 
 ## 📁 7. Project Structure
-
-The repository is organized to separate scientific logic (`src`) from data artifacts (`data`).
-```bash
-## 📂 8. Project Structure
 
 The repository is organized to separate scientific logic (`src`) from data artifacts (`data`) and configuration.
 
@@ -259,7 +254,7 @@ The repository is organized to separate scientific logic (`src`) from data artif
 
 ---
 
-## ⚠️ 8. Computational Limitations & Error Analysis
+## ⚠️ 8. Limitations & Error Analysis
 
 Since the experimental data is fixed, the primary sources of uncertainty in this repository stem from the mathematical approximations used in the **Inverse Solver**. We have quantified these computational errors to ensure they do not exceed the statistical significance of the physical results.
 
@@ -290,11 +285,11 @@ The inferred effective drag parameters ($k_{eff}$) reveal a "Dip and Rebound" pa
 | Regime Name | Fin Ratio ($L/D$) | $k_{eff}$ Behavior | Physical Interpretation |
 | :--- | :---: | :--- | :--- |
 | **1. Baseline Sphere** | $0.00$ | **Reference** | Standard flow over a sphere. The wake is dominated by large-scale vortex shedding. |
-| **2. Roughness Regime** | $0.25 - 0.75$ | **Rapid Increase** | Fins act as surface roughness, triggering early turbulence and increasing the effective cross-sectional area. **Drag peaks here.** |
-| **3. Splitter Plate Regime** | $1.00$ | **Sudden Drop** | **The Anomaly.** Fins effectively bisect the wake, stabilizing the shear layers and delaying vortex formation. Drag drops by ~54% relative to the 0.75 case. |
+| **2. Roughness Regime** | $0.25 - 0.75$ | **Rapid Increase** | Fins act as surface roughness, triggering early turbulence and increasing the effective cross-sectional area. The drag peaks here. |
+| **3. Splitter Plate Regime** | $1.00$ | **Sudden Drop** | Fins effectively bisect the wake, stabilizing the shear layers and delaying vortex formation. Drag drops by ~54% relative to the 0.75 case. |
 | **4. Bluff Body Regime** | $1.25 - 2.00$ | **Linear Increase** | As fins exceed the sphere diameter, the aerodynamic benefit is lost. The fins become large bluff bodies, and form drag dominates again. |
 
-**Final Verdict:** The "drag dip" at $L/D=1.0$ is not an experimental error. It is a statistically significant ($p < 2 \times 10^{-4}$) physical phenomenon consistent with wake stabilization theories.
+**Final Verdict:** The dip at $L/D=1.0$ is not an experimental error. It is a statistical ($p < 2 \times 10^{-4}$) physical phenomenon consistent with wake stabilization theories.
 
 ---
 
@@ -312,7 +307,7 @@ To evolve this project from a 2D kinematic model to a full aerodynamic simulatio
 
 ## 📚 11. Scientific Context & References
 
-The "drag dip" phenomenon observed at $L/D=1.0$ aligns with established research into boundary layer control, wake stabilization, and body-fin interference. The following key literature supports the physical mechanisms proposed in this study.
+The phenomenon observed at $L/D=1.0$ aligns with established research into boundary layer control, wake stabilization, and body-fin interference. The following key literature (cited in the essay) supports the physical mechanisms proposed in this study.
 
 ### Key Supporting Literature
 **1. Anomalies in Finned Projectiles**
