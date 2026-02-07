@@ -93,7 +93,7 @@ The inverse modeling pipeline is implemented in [`src/fit_drag_model.py`](src/fi
 1.  **Forward Simulation (RK4):**
     * **Logic:** Custom Runge-Kutta 4 integrator.
     * **Complexity:** $O(N)$ where $N = T/\Delta t$.
-    * View Code: [`rk4_step`](src/fit_drag_model.py#L88)
+    * **View Code:** [`rk4_step`](src/fit_drag_model.py#L88)
 
 2.  **Event Detection:**
     * **Logic:** Cubic Hermite interpolation to find the exact ground-hit time ($y=0$).
@@ -102,7 +102,7 @@ The inverse modeling pipeline is implemented in [`src/fit_drag_model.py`](src/fi
 3.  **Optimization (Bisection):**
     * **Logic:** Iteratively adjusts $k_{eff}$ until $Range_{sim} \approx Range_{obs}$.
     * **Complexity:** $O(\log(\frac{\epsilon_{initial}}{\epsilon_{target}}))$.
-    * View Code: [`fit_k_for_target_range`](src/fit_drag_model.py)
+    * **View Code:** [`fit_k_for_target_range`](src/fit_drag_model.py#L162)
 
 <p align="center">
   <img src="outputs/drag_model_range_fit.png" width="60%" alt="Figure 3: Model Fit Validation">
