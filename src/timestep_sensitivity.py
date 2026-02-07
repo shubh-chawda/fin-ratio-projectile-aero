@@ -21,7 +21,7 @@ class RunResult:
 
 
 def _repo_root() -> Path:
-    # file is src/timestep_sensitivity.py -> parents[1] is repo root
+    
     return Path(__file__).resolve().parents[1]
 
 
@@ -147,7 +147,7 @@ def main() -> None:
             f"Columns: {list(runs[0].df.columns)}"
         )
 
-    # Primary metric (used as a fallback)
+    # Primary metric (used as fallback)
     primary_metric = "k_eff_kg_per_m" if "k_eff_kg_per_m" in numeric_cols else _pick_primary_metric(numeric_cols)
 
     # Metrics we want to print as headline lines (both if available)
