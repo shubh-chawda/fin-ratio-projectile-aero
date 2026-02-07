@@ -428,7 +428,7 @@ I would like to thank my physics supervisor and the laboratory staff for their g
 
 **Shubh Chawda** is a first-year Computer Science undergraduate with an interest in the intersection of Computer Science and the Natural Sciences. This project was developed to bridge the gap between experimental data collection and computational analysis.
 
-* **Interests:** Scientific Computing, Open Science.
+* **Interests:** Scientific Computing, Open Science
 * **Looking for:** Summer Research Positions in Scientific Computing / Computer Science
 * **Connect:** [LinkedIn](https://www.linkedin.com/in/shubh-chawda/) • [GitHub](https://github.com/shubh-chawda) • [Email](mailto:lparghi@ymail.com)
 
