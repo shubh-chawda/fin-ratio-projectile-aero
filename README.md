@@ -93,7 +93,7 @@ The inverse modeling pipeline is implemented in [`src/fit_drag_model.py`](src/fi
 1.  **Forward Simulation (RK4):**
     * **Logic:** Custom Runge-Kutta 4 integrator.
     * **Complexity:** $O(N)$ where $N = T/\Delta t$.
-    * View Code: [`rk4_step`](src/fit_drag_model.py)
+    * View Code: [`rk4_step`](src/fit_drag_model.py#L88)
 
 2.  **Event Detection:**
     * **Logic:** Cubic Hermite interpolation to find the exact ground-hit time ($y=0$).
