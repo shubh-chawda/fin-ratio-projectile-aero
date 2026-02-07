@@ -264,7 +264,7 @@ The following table summarizes the sources of numerical error within the `fit_dr
 
 | Error Source | Magnitude / Tolerance | Impact on Results | Mitigation Strategy |
 | :--- | :--- | :--- | :--- |
-| **Integration Discretization** | $\Delta t = 3.0 \text{ ms}$ | **Negligible (< 0.007%)** | Used **Runge-Kutta 4 (RK4)**, a 4th-order accurate method ($O(\Delta t^4)$). Sensitivity analysis confirms stability. |
+| **Integration Discretization** | $\Delta t = 3.0 \text{ ms}$ | **Negligible (< 0.007%)** | Used **Runge-Kutta 4 (RK4)**, a 4th-order accurate method ($$O(\Delta t^4)$$). Sensitivity analysis confirms stability. |
 | **Root-Finding Convergence** | $\epsilon = 10^{-6} \text{ m}$ | **None** | The Bisection algorithm iterates until the simulated range matches the observed range to within 1 micrometer. |
 | **Event Detection** | Cubic Interpolation | **< 0.1 mm** | Instead of stopping at the nearest timestep, we interpolate the exact ground-hit time ($y=0$), eliminating "overshoot" errors. |
 | **Constant $C_d$ Assumption** | Fixed $k_{eff}$ | **Moderate** | The model assumes a constant drag coefficient. In reality, $C_d$ varies with Reynolds number ($Re \approx 10^5$), likely introducing a systematic bias in the velocity decay fits. |
