@@ -96,7 +96,7 @@ The inverse modeling pipeline is implemented in [`src/fit_drag_model.py`](src/fi
     * **View Code:** [`rk4_step`](src/fit_drag_model.py#L88)
 
 2.  **Event Detection:**
-    * **Logic:** Cubic Hermite interpolation to find the exact ground-hit time ($y=0$).
+    * **Logic:** Linear interpolation to find the exact ground-hit time ($y=0$).
     * **Precision:** Eliminates discrete timestep error, achieving $< 10^{-6} \text{ m}$ accuracy.
     * **View Code:** [`simulate_range`](src/fit_drag_model.py#L116)
     
