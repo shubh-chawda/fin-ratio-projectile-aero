@@ -11,7 +11,7 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shubh-chawda/fin-ratio-projectile-aero/blob/main/notebooks/demo.ipynb)
 
 <p align="center">
-  <img src="outputs/regime_shift_demo.gif" width="80%" alt="Animated Comparison: Drag Reduction Effect">
+  <img src="outputs/pro_telemetry.gif" width="80%" alt="Animated Comparison: Drag Reduction Effect">
 </p>
 
 <p align="center">
