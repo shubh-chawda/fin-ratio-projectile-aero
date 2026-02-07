@@ -15,7 +15,7 @@
   <i>An extension of experimental research into aerodynamic regime shifts.</i>
 </p>
 
-[📄 Read the Original Essay (PDF)](Aerodynamic%20Effects%20of%20Fin%20Length-to-Diameter%20Ratio%20on%20Spherical%20Projectile%20Range%20and%20Velocity%20Decay.pdf) • [📂 View the Data](data/raw/) • [🐛 Report an Issue](https://github.com/shubh-chawda/fin-ratio-projectile-aero/issues)
+[📄 Read the Original Essay (PDF)](docs/Aerodynamic_Effects_of_Fin_Length-to-Diameter_Ratio_on_Spherical_Projectile_Range_and_Velocity_Decay.pdf) • [📂 View the Data](data/raw/) • [🐛 Report an Issue](https://github.com/shubh-chawda/fin-ratio-projectile-aero/issues)
 
 </div>
 
