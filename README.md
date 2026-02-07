@@ -206,7 +206,7 @@ make install
 **2. Running the Demo**
 You can run the physics engine directly from the command line to visualize trajectories.
 ```bash
-# Run a simulation for the "Roughness Regime" (L/D = 0.75)
+# Run a simulation for the Regime at L/D = 0.75.
 python -m src.demo --fin-ratio 0.75 --plot
 ```
 
