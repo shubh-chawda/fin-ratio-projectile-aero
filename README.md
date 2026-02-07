@@ -328,7 +328,7 @@ The phenomenon observed at $L/D=1.0$ aligns with established research into bound
 
 **3. Numerical Necessity for Quadratic Drag**
 > **Lubarda, Marko V., and Vlado A. Lubarda.** "A Review of the Analysis of Wind-Influenced Projectile Motion in the Presence of Linear and Nonlinear Drag Force." *Archive of Applied Mechanics*, vol. 92, 2022, pp. 1997–2017. Accessed 15 Feb. 2025.
-* **Relevance:** Confirms that while Linear Drag ($v$) has analytical solutions, **Quadratic Drag ($v^2$)**—which governs our high-Reynolds number flight—requires numerical integration. This validates our choice of a custom **RK4 ODE solver**.
+* **Relevance:** Confirms that while Linear Drag ($v$) has analytical solutions, **Quadratic Drag ($v^2$)**—which governs our high-Reynolds number flight—requires numerical integration. This validates our choice of a **RK4 ODE solver**.
 
 **4. Wake Turbulence Fundamentals**
 > **Shih, Chiang.** "Flow Over a Circular Cylinder." *FAMU-FSU College of Engineering*, https://web1.eng.famu.fsu.edu/~shih/succeed/cylinder/cylinder.htm. Accessed 6 Jan. 2025.
