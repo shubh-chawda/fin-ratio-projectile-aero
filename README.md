@@ -78,7 +78,7 @@ The goal of this repository is to apply **computational methods** to the origina
 
 ## 💻 2. Computational Methods: The Inverse Solver
 
-### The Physics Model
+### Physics Model
 To understand the *cause* of the range anomaly, we need to move beyond simple averages and determine the aerodynamic properties of the projectile.
 
 We model the projectile's motion using a coupled system of Ordinary Differential Equations (ODEs) incorporating **Quadratic Drag**, which is appropriate for high-Reynolds-number flight:
@@ -87,7 +87,7 @@ $$\vec{F}_d = -\frac{1}{2} \rho A C_d v \vec{v} = -k_{eff} v \vec{v}$$
 
 Where $k_{eff}$ (Effective Drag Parameter) aggregates air density, cross-sectional area, and the drag coefficient into a single inferable parameter.
 
-### The Algorithm & Complexity
+### Algorithm
 The inverse modeling pipeline is implemented in [`src/fit_drag_model.py`](src/fit_drag_model.py).
 
 1.  **Forward Simulation (RK4):**
