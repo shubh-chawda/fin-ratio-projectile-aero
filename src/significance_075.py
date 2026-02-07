@@ -15,7 +15,7 @@ DATA = ROOT / "data" / "raw"
 OUT_FIG = ROOT / "outputs" / "figures"
 OUT_DATA = ROOT / "data" / "processed"
 
-TARGET_RATIO = 0.75  # the “dip/anomaly” ratio we want to test
+TARGET_RATIO = 0.75  # the dip ratio we want to test
 
 
 def ensure_dirs() -> None:
@@ -48,7 +48,7 @@ def _to_long_trials(df: pd.DataFrame) -> pd.DataFrame:
     if "fin_ratio" not in df.columns:
         raise ValueError("Expected a 'fin_ratio' column in trial data CSV.")
 
-    # Already-long format
+ 
     if "range_m" in df.columns:
         out = df[["fin_ratio", "range_m"]].copy()
         out["fin_ratio"] = pd.to_numeric(out["fin_ratio"], errors="coerce")
@@ -230,7 +230,7 @@ def main() -> None:
     # 95% bootstrap CI for residual
     ci_lo, ci_hi = np.quantile(resid_boot, [0.025, 0.975])
 
-    # “p-like” sign probability (two-sided)
+    # p sign probability (two-sided)
     p_sign = 2.0 * min(np.mean(resid_boot <= 0.0), np.mean(resid_boot >= 0.0))
     p_sign = float(min(1.0, p_sign))
 
