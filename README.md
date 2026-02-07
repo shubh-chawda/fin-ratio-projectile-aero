@@ -68,7 +68,7 @@ However, the data revealed an unexpected deviation from this trend. Between the 
 </p>
 
 ### Research Goal
-This observation pointed towards a potential aerodynamic regime shift—possibly due to wake stabilization or a splitter plate effect that could not be fully explained by a simple linear analysis.
+This observation pointed towards a potential aerodynamic regime shift, possibly due to wake stabilization or a splitter plate effect that could not be fully explained by a simple linear analysis.
 
 The goal of this repository is to apply **computational methods** to the original dataset to:
 1.  Mathematically quantify the effective drag coefficients ($k_{eff}$) for each flight.
@@ -138,7 +138,7 @@ The data suggests that at $L/D \approx 1.0$, the fins act as a **splitter plate*
 | **1.00** | `0.0134` | **Splitter Plate / Drag Reduction** |
 | **2.00** | `0.0652` | High Friction Drag |
 
-This quantitative drop—**$k_{eff}$ decreases by ~54%** when moving from ratio 0.75 to 1.00—is the physical mechanism driving the range anomaly.
+This quantitative drop—**$k_{eff}$ decreases by ~54%** when moving from ratio 0.75 to 1.00 could explain the range anomaly; the mechanism is hypothesized to involve wake stabilization.
 
 ---
 
@@ -287,7 +287,7 @@ The inferred effective drag parameters ($k_{eff}$) reveal a "Dip and Rebound" pa
 | :--- | :---: | :--- | :--- |
 | **1. Baseline Sphere** | $0.00$ | **Reference** | Standard flow over a sphere. The wake is dominated by large-scale vortex shedding. |
 | **2. Roughness Regime** | $0.25 - 0.75$ | **Rapid Increase** | Fins act as surface roughness, triggering early turbulence and increasing the effective cross-sectional area. The drag peaks here. |
-| **3. Splitter Plate Regime** | $1.00$ | **Sudden Drop** | Fins effectively bisect the wake, stabilizing the shear layers and delaying vortex formation. Drag drops by ~54% relative to the 0.75 case. |
+| **3. Splitter Plate Regime** | $1.00$ | **Sudden Drop** | Fins effectively bisect the wake, possibly stabilizing the shear layers and delaying vortex formation (hypothesis). Drag drops by ~54% relative to the 0.75 case. |
 | **4. Bluff Body Regime** | $1.25 - 2.00$ | **Linear Increase** | As fins exceed the sphere diameter, the aerodynamic benefit is lost. The fins become large bluff bodies, and form drag dominates again. |
 
 **Final Verdict:** The dip at $L/D=1.0$ is not an experimental error. It is a statistical ($p < 2 \times 10^{-4}$) physical phenomenon consistent with wake stabilization theories.
