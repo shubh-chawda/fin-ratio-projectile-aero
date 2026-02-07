@@ -323,7 +323,7 @@ The "drag dip" phenomenon observed at $L/D=1.0$ aligns with established research
 > **Bhatia, Dinesh, et al.** "Transition Delay and Drag Reduction using Biomimetically Inspired Surface Waves." *Journal of Applied Fluid Mechanics*, vol. 13, no. 4, 2020, pp. 1207–1222, doi:10.36884/jafm.13.04.30316. Accessed 20 Dec. 2024.
 * **Relevance:** Demonstrates that specific surface geometries can delay boundary layer separation, reducing the size of the turbulent wake. This supports our hypothesis that the fins at $L/D=1.0$ act as a **"splitter plate,"** disrupting the Von Kármán vortex street and effectively reducing the pressure drag coefficient ($C_d$).
 <p align="center">
-  <img src="[https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Vortex-street-animation.gif/440px-Vortex-street-animation.gif](https://commons.wikimedia.org/wiki/File:Vortex-street-animation.gif)" alt="Vortex Shedding Animation">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Vortex-street-animation.gif/440px-Vortex-street-animation.gif" alt="Vortex Shedding Animation">
 </p>
 <p align="center">
   <i><b>Concept Visualization:</b> Von Kármán vortex shedding behind a cylinder. A splitter plate (or appropriately sized fin) placed in the wake disrupts this shedding process, stabilizing the flow and reducing pressure drag. (Image: Wikimedia Commons)</i>
