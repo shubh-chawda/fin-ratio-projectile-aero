@@ -45,6 +45,9 @@ This project serves as a computational extension of my physics research, *"An In
 
 The original experiment explored how attaching fins of varying lengths affects the flight path of a projectile. Using a spring-loaded launcher and high-speed video tracking ($240 \text{ fps}$), I collected range and velocity data for 250g steel spheres with **Fin-Length-to-Diameter Ratios ($L/D$)** ranging from $0.0$ to $2.0$.
 
+### Observed Anomaly
+Intuitively, increasing the surface area of a projectile (by adding larger fins) is expected to increase aerodynamic drag and reduce range. My general results supported this, showing a strong negative correlation between fin length and horizontal range.
+
 <p align="center">
   <img src="outputs/pro_telemetry.gif" width="80%" alt="Animated Comparison: Drag Reduction Effect">
 </p>
@@ -52,9 +55,6 @@ The original experiment explored how attaching fins of varying lengths affects t
 <p align="center">
   <b><i>Visualizing the Anomaly:</i></b> <i>Simulation of the "Splitter Plate Effect" ($L/D=1.00$, Blue) overtaking the higher-drag "Roughness Regime" ($L/D=0.75$, Red).</i>
 </p>
-
-### Observed Anomaly
-Intuitively, increasing the surface area of a projectile (by adding larger fins) is expected to increase aerodynamic drag and reduce range. My general results supported this, showing a strong negative correlation between fin length and horizontal range.
 
 However, the data revealed an unexpected deviation from this trend. Between the ratios of $0.75$ and $1.0$, the range did not decrease as predicted. Instead, the projectile at $L/D=1.0$ traveled further than the one at $L/D=0.75$, suggesting a localized reduction in drag.
 
