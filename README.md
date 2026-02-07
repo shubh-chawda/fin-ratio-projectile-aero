@@ -419,7 +419,7 @@ This computational study is based on the experimental findings detailed in:
 
 ## Acknowledgments
 
-I would like to thank my physics supervisor and the laboratory staff for their guidance during the experimental phase of the Extended Essay.
+I would like to thank my physics supervisor and the laboratory staff for their guidance for the entire phase of the Extended Essay.
 
 ## 👨‍💻 About the Author
 
