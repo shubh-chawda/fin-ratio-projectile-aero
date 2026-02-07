@@ -11,14 +11,6 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shubh-chawda/fin-ratio-projectile-aero/blob/main/notebooks/demo.ipynb)
 
 <p align="center">
-  <img src="outputs/pro_telemetry.gif" width="80%" alt="Animated Comparison: Drag Reduction Effect">
-</p>
-
-<p align="center">
-  <b><i>Visualizing the Anomaly:</i></b> <i>Simulation of the "Splitter Plate Effect" ($L/D=1.00$, Blue) overtaking the higher-drag "Roughness Regime" ($L/D=0.75$, Red).</i>
-</p>
-
-<p align="center">
   <b>A reproducible computational study investigating drag reduction effects on spherical projectiles.</b><br>
   <i>An extension of experimental research into aerodynamic regime shifts.</i>
 </p>
@@ -52,6 +44,14 @@
 This project serves as a computational extension of my physics research, *"An Investigation of the Aerodynamic Effects of Fin-Length-to-Diameter Ratio on Spherical Projectiles"*.
 
 The original experiment explored how attaching fins of varying lengths affects the flight path of a projectile. Using a spring-loaded launcher and high-speed video tracking ($240 \text{ fps}$), I collected range and velocity data for 250g steel spheres with **Fin-Length-to-Diameter Ratios ($L/D$)** ranging from $0.0$ to $2.0$.
+
+<p align="center">
+  <img src="outputs/pro_telemetry.gif" width="80%" alt="Animated Comparison: Drag Reduction Effect">
+</p>
+
+<p align="center">
+  <b><i>Visualizing the Anomaly:</i></b> <i>Simulation of the "Splitter Plate Effect" ($L/D=1.00$, Blue) overtaking the higher-drag "Roughness Regime" ($L/D=0.75$, Red).</i>
+</p>
 
 ### Observed Anomaly
 Intuitively, increasing the surface area of a projectile (by adding larger fins) is expected to increase aerodynamic drag and reduce range. My general results supported this, showing a strong negative correlation between fin length and horizontal range.
