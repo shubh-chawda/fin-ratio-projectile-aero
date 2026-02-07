@@ -75,7 +75,7 @@ def _to_long_trials(df: pd.DataFrame) -> pd.DataFrame:
     if "fin_ratio" not in df.columns:
         raise ValueError("Expected a 'fin_ratio' column in trial data CSV.")
 
-    # already long?
+    
     if "range_m" in df.columns:
         out = df[["fin_ratio", "range_m"]].copy()
         out["fin_ratio"] = pd.to_numeric(out["fin_ratio"], errors="coerce")
@@ -265,7 +265,7 @@ def main() -> None:
     ci_resid_lo = np.quantile(resid_boot, 0.025, axis=0)
     ci_resid_hi = np.quantile(resid_boot, 0.975, axis=0)
 
-    # "significance" flag: residual CI excludes 0
+    # significance flag: residual CI excludes 0
     sig = (ci_resid_lo > 0.0) | (ci_resid_hi < 0.0)
 
     # save a tidy table
