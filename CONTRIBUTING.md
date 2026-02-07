@@ -64,4 +64,11 @@ python -m src.reproduce_key_results
 - Please add comments to complex mathematical functions (e.g., Runge–Kutta integration steps).
 - Ensure generated figures are saved to `outputs/figures/`.
 
-<p align="center"><b><span style="font-size: 1.2em;">❤️ Thank you for helping improve our project!</span></b></p>
+## ❓ Need Help?
+If you have questions about the physics model or the code structure, feel free to open an issue labeled **"question"**. We are happy to help new contributors!
+
+<br>
+
+<p align="center">
+  <b>❤️ Thank you for helping improve this project!</b>
+</p>
