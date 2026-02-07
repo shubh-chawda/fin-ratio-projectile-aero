@@ -155,7 +155,7 @@ def simulate_range(
 
         x_prev, y_prev = x, y
 
-    # If no crossing detected (shouldn't happen with these parameters), return last x
+    # If no crossing detected, return last x
     return float(state[0])
 
 
@@ -220,7 +220,7 @@ def main() -> None:
 
     out = pd.DataFrame(rows)
 
-    # Save with high precision so timestep comparisons don't get rounded to identical values
+    
     out.to_csv(OUT_DATA / "effective_drag_fit.csv", index=False, float_format="%.15g")
 
     # Plot 1: k_eff vs fin ratio
