@@ -8,7 +8,7 @@
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shubh-chawda/fin-ratio-projectile-aero/blob/main/notebooks/demo.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shubh-chawda/fin-ratio-projectile-aero/notebooks/01_reproduce_key_results.ipynb)
 
 <p align="center">
   <b>A reproducible computational study investigating drag reduction effects on spherical projectiles.</b><br>
