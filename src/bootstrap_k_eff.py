@@ -25,7 +25,7 @@ G = 9.81
 MASS = 0.250
 THETA_DEG = 45.0
 
-# Speed settings (fast but still research-y)
+# Speed settings
 DT = 2e-3          # was 1e-3
 N_BOOT = 250       # was 1200
 N_BISECT = 35      # was 60
