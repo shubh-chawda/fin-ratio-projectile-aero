@@ -117,7 +117,7 @@ def create_pro_dashboard():
             head_split.set_data([data_split[-1, 0]], [data_split[-1, 1]])
             s_stats = data_split[-1]
 
-        # --- Update HUD (Show Blue stats as it's the "Hero") ---
+        # --- Update HUD ---
         # If blue is still flying, show blue stats. If finished, show final.
         hud_text.set_text(hud_template.format(
             name="Splitter (L/D=1.0)",
