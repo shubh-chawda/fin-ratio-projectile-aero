@@ -430,7 +430,7 @@ I would like to thank my physics supervisor and the laboratory staff for their g
 
 * **Interests:** Scientific Computing, Computational Physics, Aerodynamics, Open Science.
 * **Looking for:** Summer Research Positions in Scientific Computing.
-* **Connect:** [LinkedIn](https://www.linkedin.com/in/shubh-chawda/) • [GitHub](https://github.com/shubh-chawda) • * [Email](mailto:lparghi@ymail.com)
+* **Connect:** [LinkedIn](https://www.linkedin.com/in/shubh-chawda/) • [GitHub](https://github.com/shubh-chawda) • [Email](mailto:lparghi@ymail.com)
 
 
 ## License
