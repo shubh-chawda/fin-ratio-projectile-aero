@@ -60,7 +60,7 @@ def plot_range_vs_fin(d: dict[str, pd.DataFrame]) -> None:
     _ensure_outdir()
     plt.figure(figsize=(10, 6))
 
-    # Lines (use EE equations exactly)
+    # Lines 
     xx = np.linspace(0.0, 2.0, 200)
     y_best = -0.256 * xx + 2.00
     y_max  = -0.235 * xx + 1.98
@@ -133,7 +133,7 @@ def spearman_heatmap(d: dict[str, pd.DataFrame]) -> None:
       - Experimental Range (m)
       - Velocity Decay (m/s^2)
     """
-    # Build dataset using corrected range for 0.75 and 1.00 (this matches the EE heatmap values)
+    # Build dataset using corrected range for 0.75 and 1.00
     df_range = d["range"].copy()
     corr = d["outliers"][["fin_ratio", "new_avg_range_m"]]
     df_range = df_range.merge(corr, on="fin_ratio", how="left")
@@ -162,7 +162,7 @@ def spearman_heatmap(d: dict[str, pd.DataFrame]) -> None:
     plt.xticks(np.arange(n), labels, rotation=0, ha="center")
     plt.yticks(np.arange(n), labels)
 
-    # Draw white grid lines between cells (EE-style)
+    # Draw white grid lines between cells
     ax = plt.gca()
     ax.set_xticks(np.arange(-0.5, n, 1), minor=True)
     ax.set_yticks(np.arange(-0.5, n, 1), minor=True)
