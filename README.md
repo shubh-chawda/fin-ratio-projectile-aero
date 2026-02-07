@@ -11,6 +11,14 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shubh-chawda/fin-ratio-projectile-aero/blob/main/notebooks/demo.ipynb)
 
 <p align="center">
+  <img src="outputs/regime_shift_demo.gif" width="80%" alt="Animated Comparison: Drag Reduction Effect">
+</p>
+
+<p align="center">
+  <b><i>Visualizing the Anomaly:</i></b> <i>Simulation of the "Splitter Plate Effect" ($L/D=1.00$, Blue) overtaking the higher-drag "Roughness Regime" ($L/D=0.75$, Red).</i>
+</p>
+
+<p align="center">
   <b>A reproducible computational study investigating drag reduction effects on spherical projectiles.</b><br>
   <i>An extension of experimental research into aerodynamic regime shifts.</i>
 </p>
