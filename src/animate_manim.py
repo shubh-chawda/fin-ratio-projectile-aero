@@ -1,8 +1,12 @@
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
 from manim import *
 from src.fit_drag_model import rk4_step
 import numpy as np
 
-# --- 1. Physics Helper (Same as before) ---
+# --- 1. Physics Helper ---
 def get_trajectory(v0, angle, k_eff, dt=0.01):
     theta = np.radians(angle)
     state = np.array([0.0, 0.0, v0 * np.cos(theta), v0 * np.sin(theta)])
@@ -39,7 +43,7 @@ class ProjectileComparison(ThreeDScene):
         
         labels = axes.get_axis_labels(x_label="Distance (m)", y_label="Height (m)")
         
-        # 2. Projectiles (Spheres)
+        # 2. Projectiles
         sphere_rough = Sphere(radius=0.05, resolution=(15, 15)).set_color(RED)
         sphere_split = Sphere(radius=0.05, resolution=(15, 15)).set_color(BLUE)
         
@@ -47,15 +51,14 @@ class ProjectileComparison(ThreeDScene):
         sphere_rough.set_sheen(-0.5, DR)
         sphere_split.set_sheen(-0.5, DR)
 
-        # 3. Tracers (The tails)
+        # 3. Tracers 
         trace_rough = TracedPath(sphere_rough.get_center, stroke_color=RED, stroke_width=3, dissipating_time=0.5)
         trace_split = TracedPath(sphere_split.get_center, stroke_color=BLUE, stroke_width=3, dissipating_time=0.5)
 
-        # 4. HUD (Heads Up Display) - Fixed on screen
+        # 4. HUD (Heads Up Display) 
         hud_box = Rectangle(width=4, height=2, color=WHITE).to_corner(UL)
         hud_title = Text("AERO-SIM v1.0", font_size=24).next_to(hud_box.get_top(), DOWN)
         
-        # We will update these numbers live
         dist_tracker = ValueTracker(0.0)
         label_dist = DecimalNumber(0).next_to(hud_title, DOWN)
         text_dist = Text("Max Range (m):", font_size=18).next_to(label_dist, LEFT)
@@ -104,6 +107,6 @@ class ProjectileComparison(ThreeDScene):
             rate_func=linear
         )
         
-        # End: Flash the winner
+        # End
         self.play(Indicate(sphere_split, scale_factor=1.5, color=TEAL))
         self.wait(1)
