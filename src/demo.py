@@ -128,7 +128,7 @@ def main() -> None:
     R_obs = float(row_obs["avg_range_m_used"])
     v0 = estimate_v0_from_control(df)
 
-    # Reuse effective_drag_fit.csv if available (instant demo)
+    # Reuse effective_drag_fit.csv if available 
     k_eff = None
     R_sim = None
     source = "refit"
