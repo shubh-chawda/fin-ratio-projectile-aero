@@ -148,7 +148,7 @@ def fit_param_for_range(v0: float, target_range: float, mode: str) -> float:
 
 def slope_speed_vs_time(ts: np.ndarray, speeds: np.ndarray) -> float:
     # Linear regression slope (m/s per s = m/s^2)
-    # We keep it comparable to "velocity decay" sign (negative slope).
+    # We keep it comparable to velocity decay sign (negative slope).
     if len(ts) < 10:
         return float("nan")
     m, b = np.polyfit(ts, speeds, 1)
