@@ -23,15 +23,18 @@
 
 ## 📖 Table of Contents
 1. [Background & Motivation](#-1-background--motivation)
-2. [The Anomaly: Experimental Observation](#-2-the-anomaly-experimental-observation)
-3. [Computational Methods: The Inverse Solver](#-3-computational-methods-the-inverse-solver)
-4. [The Discovery: Regime Shift](#-4-the-discovery-regime-shift)
-5. [Statistical Rigor](#-5-statistical-rigor)
-6. [Model Validation](#-6-model-validation)
-7. [Reproducibility & Usage](#-7-reproducibility--usage)
-8. [Project Structure](#-8-project-structure)
-9. [Limitations & Future Work](#-9-limitations--future-work)
-10. [Citation](#-10-citation)
+2. [Computational Methods: The Inverse Solver](#-2-computational-methods-the-inverse-solver)
+3. [The Discovery: Regime Shift](#-3-the-discovery-regime-shift)
+4. [Statistical Rigor](#-4-statistical-rigor)
+5. [Model Validation](#-5-model-validation)
+6. [Reproducibility & Usage](#-6-reproducibility--usage)
+7. [Project Structure](#-7-project-structure)
+8. [Computational Limitations & Error Analysis](#-8-computational-limitations--error-analysis)
+9. [Conclusion](#-9-conclusion)
+10. [Future Roadmap](#-10-future-roadmap)
+11. [Scientific Context & References](#-11-scientific-context--references)
+12. [Mathematical Appendix](#-12-mathematical-appendix-the-equations-of-motion)
+13. [Citation](#-13-citation)
 
 ---
 
@@ -65,7 +68,7 @@ The goal of this repository is to apply **rigorous computational methods** to th
 
 ---
 
-## 💻 3. Computational Methods: The Inverse Solver
+## 💻 2. Computational Methods: The Inverse Solver
 
 ### The Physics Model
 To understand the *cause* of the range anomaly, I needed to move beyond simple averages and determine the aerodynamic properties of the projectile.
@@ -102,7 +105,7 @@ The inverse modeling pipeline is implemented in [`src/fit_drag_model.py`](src/fi
 
 ---
 
-## 📉 4. The Discovery: Regime Shift
+## 📉 3. The Discovery: Regime Shift
 
 ### Inferring the "Hidden" Variable
 By solving for $k_{eff}$ across all fin ratios, I uncovered the aerodynamic behavior hidden within the raw range data. The resulting curve reveals a stark **non-monotonic relationship**.
@@ -130,7 +133,7 @@ This quantitative drop—**$k_{eff}$ decreases by ~54%** when moving from ratio 
 
 ---
 
-## 📊 5. Statistical Rigor
+## 📊 4. Statistical Rigor
 
 ### Uncertainty Quantification
 To ensure that the "drag dip" wasn't an artifact of experimental variance, I performed a **Bootstrap Resampling analysis ($N=5000$)**. By resampling the original trial data with replacement, I generated 95% Confidence Intervals (CI) for the effective drag parameter $k_{eff}$.
@@ -158,7 +161,7 @@ Using a **Leave-One-Out (LOO)** approach, I trained a monotonic regression on al
 
 ---
 
-## ✅ 6. Model Validation
+## ✅ 5. Model Validation
 
 ### Justifying the Physics Engine
 The inverse solver assumes a **Quadratic Drag Law** ($F_d \propto v^2$). To validate this choice, I tested the model against a secondary dataset: **Velocity Decay** (instantaneous deceleration), which was *not* used to train the model.
@@ -176,7 +179,7 @@ I compared the predictions of a **Linear Drag Model** ($F_d \propto v$) versus t
 
 ---
 
-## ⚙️ 7. Reproducibility & Usage
+## ⚙️ 6. Reproducibility & Usage
 
 ### Running the Code
 This repository is structured as a fully reproducible software artifact. You can generate every figure and result in this `README` from scratch.
@@ -217,7 +220,7 @@ Contributions are welcome! If you find an issue in the physics engine or want to
 
 ---
 
-## 📁 8. Project Structure
+## 📁 7. Project Structure
 
 The repository is organized to separate scientific logic (`src`) from data artifacts (`data`).
 ```bash
@@ -248,7 +251,7 @@ The repository is organized to separate scientific logic (`src`) from data artif
 
 ---
 
-## ⚠️ 9. Computational Limitations & Error Analysis
+## ⚠️ 8. Computational Limitations & Error Analysis
 
 Since the experimental data is fixed, the primary sources of uncertainty in this repository stem from the mathematical approximations used in the **Inverse Solver**. We have quantified these computational errors to ensure they do not exceed the statistical significance of the physical results.
 
@@ -269,7 +272,7 @@ The most significant limitation is the **single-parameter assumption**.
 
 ---
 
-## 🎓 10. Conclusion
+## 🎓 9. Conclusion
 
 This computational study successfully isolates a non-monotonic aerodynamic relationship that was hidden within raw experimental data. By applying an inverse physics model, we have categorized the projectile behavior into three distinct aerodynamic regimes.
 
@@ -287,7 +290,7 @@ The inferred effective drag parameters ($k_{eff}$) reveal a "Dip and Rebound" pa
 
 ---
 
-## 🔭 11. Future Roadmap
+## 🔭 10. Future Roadmap
 
 To evolve this project from a 2D kinematic model to a full aerodynamic simulation, the following extensions are proposed.
 
@@ -396,7 +399,7 @@ Where:
 
 ---
 
-## 📜 11. Citation
+## 📜 13. Citation
 
 If you use this software or data in your research, please cite the repository via the archived DOI:
 ```bash
@@ -416,19 +419,16 @@ This computational study is based on the experimental findings detailed in:
 
 ## Acknowledgments
 
-Special thanks to my physics supervisor and the laboratory staff for their guidance during the experimental phase of the Extended Essay.
-
----
+I would like to thank my physics supervisor and the laboratory staff for their guidance during the experimental phase of the Extended Essay.
 
 ## 👨‍💻 About the Author
 
-**Shubh Chawda** is a Computer Science undergraduate with a background in Physics research. This project was developed to bridge the gap between experimental data collection and rigorous computational analysis.
+**Shubh Chawda** is a Computer Science undergraduate with an interest in the intersection of Computer Science and the Natural Sciences. This project was developed to bridge the gap between experimental data collection and computational analysis.
 
 * **Interests:** Scientific Computing, Computational Physics, Aerodynamics, Open Science.
-* **Looking for:** Summer 2026 Research Internships in Computational Modelling.
-* **Connect:** [LinkedIn](#) • [GitHub](https://github.com/shubh-chawda) • [Email](#)
+* **Looking for:** Summer Research Internships in Scientific Computing.
+* **Connect:** [LinkedIn](https://www.linkedin.com/in/shubh-chawda/) • [GitHub](https://github.com/shubh-chawda) • [Email](lparghi@ymail.com)
 
----
 
 ## License
 
