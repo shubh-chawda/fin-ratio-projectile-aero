@@ -312,11 +312,11 @@ The phenomenon observed at $L/D=1.0$ aligns with established research into bound
 ### Key Supporting Literature
 **1. Anomalies in Finned Projectiles**
 > **Krishna, Ravi, et al.** “Anomalies in the Flow Over Projectile with Wrap-Around Fins.” *Defence Science Journal*, vol. 59, no. 5, 2009, pp. 471–484. Accessed 15 Feb. 2025.
-* **Relevance:** Documents how finned projectiles often exhibit non-monotonic aerodynamic coefficients (such as roll reversal or drag spikes) at critical geometric ratios. It validates that **"regime shifts"** are a known feature of complex projectile geometries.
+* **Relevance:** Documents how finned projectiles often exhibit non-monotonic aerodynamic coefficients (such as roll reversal or drag spikes) at critical geometric ratios. It validates that regime shifts are a known feature of complex projectile geometries.
 
 **2. Drag Reduction via Flow Transition**
 > **Bhatia, Dinesh, et al.** "Transition Delay and Drag Reduction using Biomimetically Inspired Surface Waves." *Journal of Applied Fluid Mechanics*, vol. 13, no. 4, 2020, pp. 1207–1222, doi:10.36884/jafm.13.04.30316. Accessed 20 Dec. 2024.
-* **Relevance:** Demonstrates that specific surface geometries can delay boundary layer separation, reducing the size of the turbulent wake. This supports our hypothesis that the fins at $L/D=1.0$ act as a **"splitter plate,"** disrupting the Von Kármán vortex street and effectively reducing the pressure drag coefficient ($C_d$).
+* **Relevance:** Demonstrates that specific surface geometries can delay boundary layer separation, reducing the size of the turbulent wake. This supports our hypothesis that the fins at $L/D=1.0$ act as a splitter plate, disrupting the Von Kármán vortex street and effectively reducing the pressure drag coefficient ($C_d$).
 
 <p align="center">
   <img src="outputs/vortex_street.gif" width="600" alt="Vortex Shedding Animation">
