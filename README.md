@@ -323,7 +323,7 @@ The phenomenon observed at $L/D=1.0$ aligns with established research into bound
   <img src="outputs/vortex_street.gif" width="600" alt="Vortex Shedding Animation">
 </p>
 <p align="center">
-  <i><b>Concept Visualization:</b> Von Kármán vortex shedding behind a cylinder. A splitter plate disrupts this process, reducing drag.</i>
+  <i><b>Visualization:</b> Von Kármán vortex shedding behind a cylinder. A splitter plate disrupts this process, reducing drag.</i>
 </p>
 
 **3. Numerical Necessity for Quadratic Drag**
@@ -408,19 +408,17 @@ Where:
 
 If you use this software or data in your research, please cite the repository via the archived DOI:
 ```bash
-@software{Chawda_Fin_Aero_2026,
-  author    = {Chawda, Shubh},
-  title     = {{Aerodynamic Regime Shifts in Finned Projectiles: A Reproducible Computational Study}},
-  year      = {2026},
-  url       = {[https://github.com/shubh-chawda/fin-ratio-projectile-aero](https://github.com/shubh-chawda/fin-ratio-projectile-aero)},
-  doi       = {10.5281/zenodo.18434071},
-  version   = {1.0.0}
+@software{chawda2025projectile,
+  author = {Chawda, Shubh},
+  title = {An Investigation of the Aerodynamic Effects of Fin-Length-to-Diameter Ratio on Spherical Projectiles},
+  year = {2025},
+  url = {[https://doi.org/10.5281/zenodo.18434071](https://doi.org/10.5281/zenodo.18434071)}
 }
 ```
 
 This computational study is based on the experimental findings detailed in:
 
-> **Chawda, S. (2025).** *An Investigation of the Aerodynamic Effects of Fin-Length-to-Diameter Ratio on Spherical Projectiles.* \[PDF available in repo\].
+> **Chawda, S. (2025).** *An Investigation of the Aerodynamic Effects of Fin-Length-to-Diameter Ratio on Spherical Projectiles.* [https://doi.org/10.5281/zenodo.18434071](https://doi.org/10.5281/zenodo.18434071)
 
 ## Acknowledgments
 
