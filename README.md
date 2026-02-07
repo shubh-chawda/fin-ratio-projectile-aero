@@ -41,7 +41,7 @@
 ## 🔭 1. Background & Motivation
 
 ### Experimental Context
-This project serves as a computational extension of my extended essay physics research, *"An Investigation of the Aerodynamic Effects of Fin-Length-to-Diameter Ratio on Spherical Projectiles"*.
+This project serves as a computational extension of my extended essay (received A grade) physics research, *"An Investigation of the Aerodynamic Effects of Fin-Length-to-Diameter Ratio on Spherical Projectiles"*.
 
 The original experiment explored how attaching fins of varying lengths affects the flight path of a projectile. Using a spring-loaded launcher and high-speed video tracking ($240 \text{ fps}$), we collected range and velocity data for 250g steel spheres with **Fin-Length-to-Diameter Ratios ($L/D$)** ranging from $0.0$ to $2.0$.
 
